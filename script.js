@@ -314,17 +314,98 @@ $('#offBtn').onclick=e=>{const o=$('#screen').classList.toggle('offline');e.targ
 document.querySelectorAll('[data-to]').forEach(el=>seen(el,()=>{const to=+el.dataset.to,t0=performance.now();
   (function f(t){const k=rs?1:Math.min((t-t0)/1600,1);el.textContent=el.dataset.pre+Math.round(to*(1-Math.pow(1-k,3))).toLocaleString('en-IN')+el.dataset.suf;if(k<1)requestAnimationFrame(f)})(t0)},.6));
 
-/* ===== demo form: name, phone, company (matches the HTML form) ===== */
-const form=$('#form'),msg=$('#msg');
-function say(t,type){msg.textContent=t;msg.className='msg '+(type||'')}
-function bad(input){input.classList.remove('bad');void input.offsetWidth;input.classList.add('bad');input.focus()}
-form.addEventListener('submit',e=>{
-  e.preventDefault();
-  const n=form.elements.n,p=form.elements.p,c=form.elements.c;
-  [n,p,c].forEach(i=>i.classList.remove('bad'));
-  const name=n.value.trim(),phone=p.value.trim();
-  if(!name){bad(n);say('Please enter your name.','err');return}
-  if(!/^[0-9+ ]{10,14}$/.test(phone)){bad(p);say('Please enter a valid phone number (10 to 14 digits).','err');return}
-  say('Thank you, '+name+'. We will call you on '+phone+' within one working day.','ok');
-  form.reset();
-});
+/* ===== demo popup form -> sends the details to your email ===== */
+/* ===== demo popup form -> Web3Forms (works from file:// too) ===== */
+(function(){
+  const ACCESS_KEY='a28c3dc9-4024-4347-af69-51f2eb075943';
+  const ENDPOINT='https://api.web3forms.com/submit';
+
+  const mdl=document.getElementById('mdl'),
+        form=document.getElementById('demoForm'),
+        msg=document.getElementById('demoMsg'),
+        submitBtn=form?form.querySelector('button[type="submit"]'):null;
+  if(!mdl||!form)return;
+  let last=null,busy=false;
+
+  function say(t,type){msg.textContent=t;msg.className='msg '+(type||'')}
+  function bad(el){el.classList.remove('bad');void el.offsetWidth;el.classList.add('bad');el.focus()}
+
+  function openM(){
+    last=document.activeElement;
+    nav.classList.remove('open');burger.setAttribute('aria-expanded',false);
+    say('','');
+    mdl.classList.add('open');
+    document.body.classList.add('modal-open');
+    setTimeout(()=>form.elements.n.focus(),350);
+  }
+  function closeM(){
+    mdl.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(last&&last.focus)last.focus();
+  }
+
+  document.querySelectorAll('a[href="#demo"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openM()}));
+  mdl.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',closeM));
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&mdl.classList.contains('open'))closeM()});
+
+  function setBusy(on){
+    busy=on;
+    if(!submitBtn)return;
+    submitBtn.disabled=on;
+    submitBtn.style.opacity=on?'.7':'';
+    submitBtn.innerHTML=on?'Sending…':'Submit <span aria-hidden="true">→</span>';
+  }
+
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(busy)return;
+    const f=form.elements,
+      name=f.n.value.trim(),email=f.e.value.trim(),phone=f.p.value.trim(),area=f.a.value.trim();
+    form.querySelectorAll('.bad').forEach(x=>x.classList.remove('bad'));
+
+    if(!name){bad(f.n);say('Please enter your name.','err');return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){bad(f.e);say('Please enter a valid work email.','err');return}
+    if(!/^[0-9+ ]{10,14}$/.test(phone)){bad(f.p);say('Please enter a valid WhatsApp number (10 to 14 digits).','err');return}
+    if(!f.i.value){bad(f.i);say('Please select your industry type.','err');return}
+    if(!f.t.value){bad(f.t);say('Please select your team size.','err');return}
+    if(!area){bad(f.a);say('Please enter your area.','err');return}
+    if(!f.k.checked){say('Please accept the consent to continue.','err');return}
+
+    const payload={
+      access_key:ACCESS_KEY,
+      subject:'New MegRevo demo request from '+name,
+      from_name:'MegRevo Website',
+      replyto:email,
+      'Name':name,
+      'Email':email,
+      'WhatsApp Number':phone,
+      'Company':f.c.value.trim()||'-',
+      'Industry':f.i.value,
+      'Sales & Marketing Team Size':f.t.value,
+      'Area / City':area,
+      'Consent given':'Yes',
+      'Submitted at':new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+' (IST)'
+    };
+
+    setBusy(true);
+    say('Sending your request…','');
+    try{
+      const res=await fetch(ENDPOINT,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      const out=await res.json().catch(()=>({}));
+      if(!res.ok||out.success!==true)throw new Error(out.message||'Request failed');
+
+      say('Thank you, '+name+'. We have received your request and will contact you on '+phone+' within one working day.','ok');
+      form.reset();f.k.checked=true;
+      setTimeout(closeM,3500);
+    }catch(err){
+      console.error('Demo request failed',err);
+      say('Error: '+err.message,'err');
+    }finally{
+      setBusy(false);
+    }
+  });
+})();

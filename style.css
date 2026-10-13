@@ -365,12 +365,39 @@ input.bad{border-color:#ef4444;animation:shake .35s}
 /* ===== FOOTER ===== */
 footer{position:relative;display:block;padding:0;background:linear-gradient(160deg,#071a3d,#0a2e63 55%,#0b4a3b);border-top:3px solid transparent;border-image:var(--grad) 1;color:#a9c1e6;font-size:.9rem}
 footer img{height:40px}
-.f-top{max-width:1184px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding:48px clamp(16px,4vw,48px) 28px}
+.f-top{max-width:1184px;margin:auto;display:grid;grid-template-columns:1.5fr .7fr .7fr 1.4fr;gap:40px;padding:48px clamp(16px,4vw,48px) 32px}
 .f-brand img{display:block;height:44px;box-sizing:content-box;margin-bottom:14px;padding:8px 14px;background:#fff;border-radius:14px;box-shadow:0 10px 26px rgba(0,0,0,.25)}
 .f-brand p{max-width:40ch;color:#a9c1e6}
-.f-col{display:grid;align-content:start;gap:10px}.f-col b{color:#fff;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:1.05rem}
-.f-col a{color:#a9c1e6;transition:color .2s,transform .2s}.f-col a:hover{color:#5fe04a;transform:translateX(4px)}
+.f-col{display:grid;align-content:start;gap:10px}.f-col>b{color:#fff;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:1.05rem}
+.f-col>a:not(.f-ci){color:#a9c1e6;transition:color .2s,transform .2s}.f-col>a:not(.f-ci):hover{color:#5fe04a;transform:translateX(4px)}
+
+/* social strip: one row, icon above label */
+.f-bar{border-top:1px solid rgba(255,255,255,.14)}
+.f-bar-in{max-width:1184px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:26px clamp(16px,4vw,48px)}
+.f-bar-t{min-width:0}
+.f-bar-t b{display:block;color:#fff;font:800 1.15rem "Bricolage Grotesque",system-ui,sans-serif}
+.f-bar-t span{color:#8ea8d4;font-size:.88rem}
+.f-social{display:flex;flex-wrap:nowrap;gap:clamp(8px,2vw,26px)}
+.f-social a{display:grid;justify-items:center;gap:8px;min-width:58px;color:#dcecff;font-weight:700;font-size:.78rem;transition:color .25s,transform .3s cubic-bezier(.3,1.6,.5,1)}
+.f-social i{display:grid;place-items:center;width:50px;height:50px;border-radius:50%;color:#fff;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);transition:background .3s,border-color .3s,box-shadow .3s,transform .35s cubic-bezier(.3,1.6,.5,1)}
+.f-social svg{width:22px;height:22px}
+.f-social a:hover{color:#5fe04a;transform:translateY(-4px)}
+.f-social a:hover i{background:var(--grad);border-color:transparent;box-shadow:0 12px 26px rgba(27,143,54,.45);transform:rotate(-8deg) scale(1.08)}
+
+/* contact items */
+.f-ci{display:grid;grid-template-columns:38px minmax(0,1fr);gap:12px;align-items:start;color:#dcecff;line-height:1.5}
+.f-ci i{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;color:#fff;background:linear-gradient(135deg,var(--blue),var(--green2));box-shadow:0 8px 18px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.f-ci i svg{width:18px;height:18px}
+.f-ci small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8ea8d4}
+.f-ci em{display:block;margin-top:4px;font-style:normal;font-size:.82rem;color:#8ea8d4}
+a.f-ci{transition:color .2s}
+a.f-ci:hover{color:#5fe04a}
+a.f-ci:hover i{transform:rotate(-8deg) scale(1.1)}
 .f-bot{border-top:1px solid rgba(255,255,255,.14);text-align:center;padding:18px;font-size:.85rem;color:#8ea8d4}
+
+@media(max-width:1100px){.f-top{grid-template-columns:1fr 1fr;gap:34px}}
+@media(max-width:760px){.f-bar-in{flex-direction:column;align-items:flex-start}.f-social{width:100%;justify-content:space-between}}
+@media(max-width:600px){.f-top{grid-template-columns:1fr}.f-social a{min-width:0;font-size:.7rem}.f-social i{width:44px;height:44px}.f-social svg{width:20px;height:20px}}
 
 /* ===== PLATFORM: compact tiles ===== */
 #pf{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
@@ -394,7 +421,6 @@ footer img{height:40px}
   .dash,.two,.demo{grid-template-columns:minmax(0,1fr)}.kpis{grid-template-columns:1fr 1fr}.gal{grid-template-columns:1fr}.nums{grid-template-columns:1fr 1fr}.row{grid-template-columns:80px 1fr 38px}
   h1{font-size:clamp(2rem,9vw,2.8rem)}
   #pf{grid-template-columns:1fr}
-  .f-top{grid-template-columns:1fr}
 
   /* explorer on mobile: horizontal module strip, then the detail panel */
   .xp{grid-template-columns:minmax(0,1fr);gap:14px}
@@ -442,3 +468,152 @@ footer img{height:40px}
 }
 @media(max-width:520px){.rg-g{grid-template-columns:1fr}.xp-nav .btn{padding:10px 16px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ===== DEMO POPUP ===== */
+body.modal-open{overflow:hidden}
+.mdl{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:16px;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.mdl.open{opacity:1;visibility:visible;transition:opacity .3s}
+.mdl-bd{position:absolute;inset:0;background:rgba(7,26,61,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.mdl-box{position:relative;display:grid;grid-template-columns:.85fr 1.15fr;width:min(940px,100%);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);border-radius:28px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5);transform:translateY(30px) scale(.97);transition:transform .45s cubic-bezier(.2,.9,.3,1.2)}
+.mdl.open .mdl-box{transform:none}
+.mdl-x{position:absolute;top:14px;right:14px;z-index:5;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;transition:transform .3s,background .3s}
+.mdl-x:hover{transform:rotate(90deg);background:rgba(255,255,255,.2)}
+.mdl-x svg{width:20px;height:20px}
+
+/* left white panel */
+.mdl-l{position:relative;display:flex;flex-direction:column;gap:14px;padding:30px 30px 26px;background:#fff;overflow:hidden;min-height:0}
+.mdl-l:after{content:"";position:absolute;right:-70px;bottom:-70px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(47,194,31,.22),rgba(19,102,232,.12) 60%,transparent 70%);pointer-events:none}
+.mdl-logo{height:44px;width:auto;align-self:flex-start;flex:none}
+.mdl-l h2{font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.1;max-width:none;margin:0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;flex:none}
+.mdl-sub{font-weight:700;font-size:.8rem;line-height:1.7;color:#2b3f66;letter-spacing:.02em;flex:none}
+
+/* team image: fills the free space, shrinks on short screens */
+.mdl-team{position:relative;z-index:1;display:block;flex:1 1 0;min-height:90px;width:100%;height:auto;object-fit:contain;object-position:center bottom;border-radius:16px;background:#fff}
+
+.mdl-c{position:relative;z-index:1;flex:none;padding-top:12px;border-top:1px solid var(--line)}
+.mdl-c small{display:block;font-weight:700;font-size:.75rem;letter-spacing:.06em;color:var(--mute)}
+.mdl-c a{font:800 1.2rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--blue2)}
+.mdl-c a:hover{color:var(--green2)}
+
+/* right dark form */
+.mdl .mdl-r{display:flex;flex-direction:column;gap:13px;padding:34px 34px 30px;border:0;border-radius:0;box-shadow:none;overflow-y:auto;color:#fff;background:linear-gradient(160deg,#071a3d,#0a2e63 60%,#0b4a3b)}
+.mdl-r h3{font-size:1.8rem;line-height:1.1;padding-right:44px}
+.mdl-hint{color:#cfe0fb;font-size:.92rem;margin-bottom:6px}
+.mdl-r input:not([type=checkbox]),.mdl-r select{width:100%;padding:13px 15px;border-radius:10px;border:1.5px solid rgba(255,255,255,.18);background-color:rgba(255,255,255,.07);color:#fff;font:500 .95rem "Hanken Grotesk",system-ui,sans-serif;transition:border-color .25s,box-shadow .25s,background-color .25s}
+.mdl-r input::placeholder{color:#9fb4d9}
+.mdl-r input:not([type=checkbox]):focus,.mdl-r select:focus{border-color:var(--green);background-color:rgba(255,255,255,.12);box-shadow:0 0 0 4px rgba(47,194,31,.2);outline:0}
+.mdl-r select{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:42px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239fb4d9' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px}
+.mdl-r select:invalid{color:#9fb4d9}
+.mdl-r select option{background:#0a2e63;color:#fff}
+.mdl-r input.bad,.mdl-r select.bad{border-color:#ff6b6b;box-shadow:0 0 0 4px rgba(255,107,107,.18)}
+.mdl-r .ck{display:flex;flex-direction:row;gap:12px;align-items:flex-start;font-weight:500;font-size:.85rem;line-height:1.5;color:#dcecff;cursor:pointer}
+.mdl-r .ck input{flex:none;width:18px;height:18px;margin-top:3px;accent-color:var(--green);cursor:pointer}
+.mdl-r .btn{width:100%;padding:15px;font-size:1.05rem;flex:none}
+.mdl-r .btn span{display:inline-block;transition:transform .25s}
+.mdl-r .btn:hover span{transform:translateX(5px)}
+.mdl-r .msg{min-height:0;color:#fff}
+.mdl-r .msg:not(:empty){padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.1)}
+.mdl-r .msg.ok{background:rgba(47,194,31,.22);color:#c9ffc2}
+.mdl-r .msg.err{background:rgba(239,68,68,.22);color:#ffd0d0}
+
+@media(max-width:760px){
+  .mdl{padding:10px}
+  .mdl-box{grid-template-columns:minmax(0,1fr);max-height:calc(100dvh - 20px);overflow-y:auto;border-radius:22px}
+  .mdl-l{display:none}
+  .mdl .mdl-r{padding:26px 20px 22px;overflow:visible}
+  .mdl-r h3{font-size:1.5rem}
+}
+@media(prefers-reduced-motion:reduce){.mdl-box{transform:none}}
+/* ===== DEMO POPUP FIX (original look, Submit always visible) =====
+   1. DELETE the earlier popup-fix block from style.css
+   2. Paste this at the very END of style.css */
+
+/* keep the original single-column look, just a little tighter */
+.mdl .mdl-r{
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+  padding:30px 34px 16px;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.3) transparent;
+}
+.mdl-r h3{font-size:1.7rem;margin:0}
+.mdl-r .mdl-hint{margin:0 0 4px}
+.mdl-r input:not([type=checkbox]),.mdl-r select{padding:12px 15px}
+
+/* error / success text sits above the button */
+.mdl-r .msg{order:5}
+
+/* Submit: same rounded pill as before, but pinned to the bottom of the popup */
+.mdl-r .btn{
+  order:6;
+  position:sticky;
+  bottom:0;
+  z-index:3;
+  width:100%;
+  padding:15px;
+  border-radius:999px;
+  box-shadow:0 10px 26px rgba(0,0,0,.45),0 0 0 6px rgba(9,38,84,.9);
+}
+
+/* short laptop screens: a little tighter so more fields show */
+@media(max-height:680px){
+  .mdl .mdl-r{padding:22px 30px 12px;gap:9px}
+  .mdl-r h3{font-size:1.45rem}
+  .mdl-r .mdl-hint{font-size:.85rem;margin-bottom:2px}
+  .mdl-r input:not([type=checkbox]),.mdl-r select{padding:10px 14px;font-size:.92rem}
+  .mdl-r .ck{font-size:.78rem;line-height:1.4}
+  .mdl-r .btn{padding:13px}
+}
+
+/* phones */
+@media(max-width:760px){
+  .mdl .mdl-r{padding:24px 20px 12px;overflow:visible}
+  .mdl-r .btn{bottom:8px}
+}
+/* ===== BIGGER POPUP CARD + BIGGER IMAGE (Submit always visible) ===== */
+
+/* card perusa: width 1100px, height almost full screen */
+.mdl-box{
+  width:min(1100px,100%);
+  height:min(720px,calc(100dvh - 32px));
+  max-height:calc(100dvh - 32px);
+  grid-template-columns:.9fr 1.1fr;
+}
+
+/* left panel: konjam tight spacing, so image-ku adhiga idam */
+.mdl-l{
+  padding:26px 28px 22px;
+  gap:12px;
+}
+.mdl-l h2{font-size:clamp(1.5rem,2.4vw,2rem)}
+
+/* image perusa: free space muzhuvadhum eduthukkum */
+.mdl-team{
+  flex:1 1 0;
+  min-height:160px;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+}
+
+/* right form: full height-la fit aagum, Submit keezha pinned */
+.mdl .mdl-r{
+  height:100%;
+  overflow-y:auto;
+}
+
+/* short laptop screens (height < 700px): image chinnadhaa aagum, Submit safe */
+@media(max-height:700px){
+  .mdl-box{height:calc(100dvh - 20px);max-height:calc(100dvh - 20px)}
+  .mdl-team{min-height:100px}
+  .mdl-l{padding:20px 24px 16px;gap:8px}
+  .mdl-sub{font-size:.74rem;line-height:1.5}
+}
+
+/* tablet/phone: left panel hide, form mattum */
+@media(max-width:760px){
+  .mdl-box{height:auto;max-height:calc(100dvh - 20px)}
+}
