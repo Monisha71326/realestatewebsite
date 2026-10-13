@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MegRevo – Real Estate ERP & CRM</title>
+<meta name="description" content="Leads, plots, bookings, payments, calls, accounts, HR and construction in one real estate software.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="progress" id="progress"></div>
+  <a href="#top" class="brand"><img src="assets/logo.png" alt="MegRevo"></a>
+  <nav id="menu" aria-label="Main">
+    <span class="ind" id="ind"></span>
+    <a href="#features">Features</a><a href="#pipeline">Pipeline</a><a href="#dashboard">Dashboard</a><a href="#roles">Roles</a><a href="#platform">Platform</a><a href="#mobile">Mobile</a><a href="#faq">FAQ</a>
+    <a href="#demo" class="btn sm menu-cta">Book a demo</a>
+  </nav>
+  <a href="#demo" class="btn sm nav-cta">Book a demo</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+<main id="top">
+<section class="hero">
+  <p class="tag"><i></i>Real estate ERP & CRM</p>
+  <h1>Your plots, leads and payments. <span>One screen.</span></h1>
+  <p class="lead">MegRevo is the real estate software that runs sales, bookings, collections, calls, accounts, construction and your team.</p>
+  <div class="cta"><a href="#demo" class="btn">Book a free demo</a><a href="#features" class="btn ghost">Explore 24 modules</a></div>
+  <div class="trust"><span><i data-ic="grid"></i>24 modules</span><span><i data-ic="radio"></i>9 lead sources</span><span><i data-ic="lock"></i>11 user roles</span><span><i data-ic="phone"></i>IVR & call records</span></div>
+  <div class="photo">
+    <div class="img"></div>
+    <div class="notifs" id="notifs" aria-hidden="true"></div>
+    <div class="chip"><small>Booked today</small><strong id="today">6</strong></div>
+    <div class="layout" aria-label="Live plot layout. Click a plot to book it.">
+      <div class="layout-top"><b>Green County</b><span class="live"><i></i>Live</span></div>
+      <div class="plots" id="plots"></div>
+      <div class="layout-foot"><span><b id="bookedCount">0</b><em id="totalCount"></em> booked</span><b id="revenue">₹0</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="features">
+  <h2>24 modules. Six departments. One login.</h2>
+  <p class="sub">Pick a department, then tap any module. Everything it does is listed on the right, so nothing is hidden.</p>
+  <div class="filters" id="filters" role="tablist" aria-label="Departments"></div>
+  <div class="xp" id="xp">
+    <div class="xp-list" id="xpList" role="tablist" aria-orientation="vertical" aria-label="Modules"></div>
+    <div class="xp-panel" id="xpPanel" role="tabpanel" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="sec band" id="pipeline">
+  <h2>Watch one lead go from first call to final payment</h2>
+  <div class="scroll"><div class="pipe" id="pipe">
+    <div class="col"><b>New</b></div><div class="col"><b>Contacted</b></div><div class="col"><b>Site visit</b></div><div class="col"><b>Negotiation</b></div><div class="col"><b>Booked</b></div><div class="col"><b>Paid</b></div>
+    <div class="lead-card" id="leadCard"><small id="leadMsg">New lead from Facebook</small><b>Sample lead · Plot A12</b><span id="leadAmt">₹14.5 L</span><em class="day" id="leadDay">Day 1</em></div>
+  </div></div>
+</section>
+
+<section class="sec band dark" id="dashboard">
+  <h2>The numbers you check every morning</h2>
+  <div class="win">
+    <div class="win-bar"><i></i><i></i><i></i><span>megrevo / dashboard</span></div>
+    <div class="dash">
+      <div class="kpis">
+        <div class="kpi"><small>Leads this month</small><strong data-to="1248" data-pre="" data-suf="">0</strong><em>+18%</em></div>
+        <div class="kpi"><small>Site visits</small><strong data-to="326" data-pre="" data-suf="">0</strong><em>+9%</em></div>
+        <div class="kpi"><small>Plots booked</small><strong data-to="84" data-pre="" data-suf="">0</strong><em>+22%</em></div>
+        <div class="kpi"><small>Collections</small><strong data-to="12" data-pre="₹" data-suf=" Cr">0</strong><em>+14%</em></div>
+      </div>
+      <div class="chart"><div class="chart-h"><b>Sales overview</b><span>Last 12 months</span></div>
+        <svg viewBox="0 0 600 220" preserveAspectRatio="none" id="line" role="img" aria-label="Sales trend rising over 12 months">
+          <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1fa84a" stop-opacity=".3"/><stop offset="1" stop-color="#1fa84a" stop-opacity="0"/></linearGradient><linearGradient id="sg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1366e8"/><stop offset="1" stop-color="#2fc21f"/></linearGradient></defs>
+          <path class="area" d="M0,185 C60,175 90,125 150,135 S240,75 300,95 S400,45 460,60 S560,25 600,18 L600,220 L0,220Z" fill="url(#ag)"/>
+          <path class="ln" pathLength="1" d="M0,185 C60,175 90,125 150,135 S240,75 300,95 S400,45 460,60 S560,25 600,18" fill="none" stroke="url(#sg)" stroke-width="4" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        </svg></div>
+      <div class="src"><div class="chart-h"><b>Lead sources</b></div>
+        <div class="row"><span>Facebook</span><div class="bar"><i data-w="38"></i></div><b>38%</b></div>
+        <div class="row"><span>Google Ads</span><div class="bar"><i data-w="27"></i></div><b>27%</b></div>
+        <div class="row"><span>WhatsApp</span><div class="bar"><i data-w="21"></i></div><b>21%</b></div>
+        <div class="row"><span>IVR calls</span><div class="bar"><i data-w="14"></i></div><b>14%</b></div></div>
+    </div>
+  </div>
+  <p class="note">Sample numbers that show the layout of the real dashboard.</p>
+</section>
+
+<section class="sec gal-wrap">
+  <div class="gal"><figure style="--s:230%;--p:8% 55%"><figcaption>Villas & homes</figcaption></figure><figure style="--s:260%;--p:55% 90%"><figcaption>Amenities</figcaption></figure><figure style="--s:240%;--p:92% 72%"><figcaption>Gated communities</figcaption></figure></div>
+</section>
+
+<section class="sec" id="roles">
+  <h2>11 roles. Everyone sees only what they should</h2>
+  <p class="sub">Pick a role to see exactly which of the 24 modules it can open, and how far its access goes.</p>
+  <div class="rx">
+    <div class="rx-list" id="roleBtns" role="tablist" aria-label="Roles"></div>
+    <div class="rx-panel" id="rolePanel" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="sec" id="platform">
+  <h2>Built in, on every plan</h2>
+  <p class="sub">The platform features that sit under all 24 modules.</p>
+  <div class="grid" id="pf"></div>
+</section>
+
+<section class="sec band" id="mobile">
+  <div class="two">
+    <div class="phone-wrap"><div class="phone"><div class="screen" id="screen">
+      <div class="off">You are offline. Your work is saved.</div>
+      <b>Good morning</b><div class="mini"><span>12</span><small>New leads</small></div><div class="mini"><span>5</span><small>Visits today</small></div><div class="mini"><span>₹8.4L</span><small>Collected</small></div>
+      <div class="bnav"><i data-ic="dashboard"></i><i data-ic="users"></i><i data-ic="clipboard"></i><i data-ic="card"></i><i data-ic="settings"></i></div></div></div></div>
+    <div><h2>Your agents sell from the site, on their phones</h2><p class="sub">Bottom navigation, quick lead updates, and a clear message when the network drops.</p><button class="btn" id="offBtn" type="button">Try offline mode</button></div>
+  </div>
+</section>
+
+<section class="sec nums">
+  <div><strong data-to="24" data-pre="" data-suf="">0</strong><span>modules</span></div>
+  <div><strong data-to="24" data-pre="" data-suf="">0</strong><span>finance sub-modules</span></div>
+  <div><strong data-to="9" data-pre="" data-suf="">0</strong><span>lead sources</span></div>
+  <div><strong data-to="11" data-pre="" data-suf="">0</strong><span>user roles</span></div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="fq">
+    <aside class="fq-side">
+      <h2>Questions developers ask</h2>
+      <p class="sub">Quick answers before your demo. Pick a topic to narrow the list.</p>
+      <div class="filters fq-tabs" id="faqTabs" role="tablist" aria-label="FAQ topics"></div>
+      <div class="fq-cta">
+        <b>Still have a question?</b>
+        <p>Leave your number and we will walk you through it on your own projects.</p>
+        <a href="#demo" class="btn sm">Book a demo</a>
+      </div>
+    </aside>
+    <div class="fq-list" id="faqList"></div>
+  </div>
+</section>
+
+<section class="sec" id="demo">
+  <div class="dm">
+    <div class="dm-bg" aria-hidden="true"></div>
+    <div class="dm-copy">
+      <p class="tag"><i></i>Free walkthrough</p>
+      <h2>See it on your own projects</h2>
+      <p class="sub">Leave your number. We will set up a walkthrough with your layouts and sales process.</p>
+      <ul class="dm-pts">
+        <li><i data-ic="check"></i>Walkthrough built around your layouts and plots</li>
+        <li><i data-ic="check"></i>Your own sales process, not a generic demo</li>
+        <li><i data-ic="check"></i>We call within one working day</li>
+      </ul>
+      <div class="dm-chips"><span>24 modules</span><span>11 roles</span><span>9 lead sources</span></div>
+    </div>
+    <form id="form" class="dm-form" novalidate>
+      <div class="dm-fh"><b>Book your free demo</b><small>We call within one working day</small></div>
+      <label>Your name<span class="inp"><i data-ic="user"></i><input name="n" required autocomplete="name" placeholder="e.g. Ravi Kumar"></span></label>
+      <label>Phone number<span class="inp"><i data-ic="phone"></i><input name="p" required inputmode="tel" autocomplete="tel" pattern="[0-9+ ]{10,14}" placeholder="98765 43210"></span></label>
+      <label>Company <em>(optional)</em><span class="inp"><i data-ic="building"></i><input name="c" autocomplete="organization" placeholder="Your company name"></span></label>
+      <button class="btn" type="submit">Request demo <span aria-hidden="true">→</span></button>
+      <p class="msg" id="msg" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="f-top">
+    <div class="f-brand"><img src="assets/logo.png" alt="MegRevo"><p>Real estate ERP & CRM for plot developers. Sales, bookings, payments, accounts and construction in one place.</p></div>
+    <div class="f-col"><b>Product</b><a href="#features">Features</a><a href="#roles">Roles</a><a href="#platform">Platform</a><a href="#pipeline">Pipeline</a><a href="#dashboard">Dashboard</a><a href="#mobile">Mobile</a></div>
+    <div class="f-col"><b>Get started</b><a href="#faq">FAQ</a><a href="#demo">Book a demo</a></div>
+  </div>
+  <div class="f-bot">© <span id="yr"></span> MegRevo. All rights reserved.</div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
