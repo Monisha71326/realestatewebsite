@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="mobile.css">
+
 
 </head>
 <body>
@@ -29,8 +31,34 @@
   <p class="tag"><i></i>Real estate ERP & CRM</p>
   <h1>Your plots, leads and payments. <span>One screen.</span></h1>
   <p class="lead">MegRevo is the real estate software that runs sales, bookings, collections, calls, accounts, construction and your team.</p>
-  <div class="cta"><a href="#demo" class="btn">Book a free demo</a><a href="#features" class="btn ghost">Explore 24 modules</a></div>
-  <div class="trust"><span><i data-ic="grid"></i>24 modules</span><span><i data-ic="radio"></i>9 lead sources</span><span><i data-ic="lock"></i>11 user roles</span><span><i data-ic="phone"></i>IVR & call records</span></div>
+
+  <div class="cta">
+    <a href="#demo" class="btn">Book a free demo</a>
+
+    <!-- Desktop: original button -->
+    <a href="#features" class="btn ghost xo-desk">Explore 24 modules</a>
+
+    <!-- Mobile only: premium button -->
+    <a href="#features" class="btn ghost xplore xo-mob">
+      <span class="xo-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="xo-t"><b>Explore 24 modules</b><small>6 departments · tap to browse</small></span>
+      <span class="xo-go" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <!-- Desktop: original chips -->
+  <div class="trust tr-desk"><span><i data-ic="grid"></i>24 modules</span><span><i data-ic="radio"></i>9 lead sources</span><span><i data-ic="lock"></i>11 user roles</span><span><i data-ic="phone"></i>IVR & call records</span></div>
+
+  <!-- Mobile only: stat tiles -->
+  <div class="trust-m tr-mob">
+    <div class="tm"><i data-ic="grid"></i><strong>24</strong><span>modules</span></div>
+    <div class="tm"><i data-ic="radio"></i><strong>9</strong><span>lead sources</span></div>
+    <div class="tm"><i data-ic="lock"></i><strong>11</strong><span>user roles</span></div>
+    <div class="tm"><i data-ic="phone"></i><strong>IVR</strong><span>&amp; call records</span></div>
+  </div>
+
   <div class="photo">
     <div class="img"></div>
     <div class="notifs" id="notifs" aria-hidden="true"></div>
@@ -164,6 +192,7 @@
   </div>
   <div class="f-bot">© <span id="yr"></span> MegRevo. All rights reserved.</div>
 </footer>
+
 
 <!-- ===== DEMO POPUP ===== -->
 <div class="mdl" id="mdl" role="dialog" aria-modal="true" aria-labelledby="mdlT">
